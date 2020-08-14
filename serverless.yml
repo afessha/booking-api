@@ -1,0 +1,57 @@
+service: booking-api
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: eu-west-2
+  environment:
+    BOOKING_DYNAMODB: ${self:custom.bookingDynamoDB}
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "s3:ListBucket"
+      Resource:
+        {
+          "Fn::Join":
+            ["", ["arn:aws:s3:::", { "Ref": "ServerlessDeploymentBucket" }]],
+        }
+    - Effect: "Allow"
+      Action:
+        - "dynamodb:*"
+      Resource:
+        Fn::GetAtt:
+          - bookingDynamoDB
+          - Arn
+custom:
+  bookingDynamoDB: booking-${opt:stage,'dev'}-list-awet
+
+# you can overwrite defaults here
+#  stage: dev
+
+functions:
+  booking-create-awet:
+    handler: handler.createBooking
+    events:
+      - http:
+          path: bookings
+          method: post
+
+# you can add CloudFormation resource templates here
+resources:
+  Resources:
+    bookingDynamoDB:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:custom.bookingDynamoDB}
+        AttributeDefinitions:
+          - AttributeName: booking_email
+            AttributeType: S
+          - AttributeName: booking_id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: booking_email
+            KeyType: HASH
+          - AttributeName: booking_id
+            KeyType: RANGE
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
