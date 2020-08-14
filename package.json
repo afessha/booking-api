@@ -1,0 +1,25 @@
+{
+  "name": "booking-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "handler.js",
+  "dependencies": {
+    "uuid": "^8.3.0"
+  },
+  "devDependencies": {
+    "aws-sdk": "^2.733.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/afessha/booking-api.git"
+  },
+  "author": "Awet Fessha",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/afessha/booking-api/issues"
+  },
+  "homepage": "https://github.com/afessha/booking-api#readme"
+}
