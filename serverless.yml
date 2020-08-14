@@ -4,7 +4,7 @@ provider:
   runtime: nodejs12.x
   region: eu-west-2
   environment:
-    BOOKING_DYNAMODB: ${self:custom.bookingDynamoDB}
+    BOOKINGS_DYNAMODB: ${self:custom.bookingDynamoDB}
   iamRoleStatements:
     - Effect: "Allow"
       Action:
