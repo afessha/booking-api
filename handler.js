@@ -16,6 +16,7 @@ module.exports.createBooking = (event, context, callback) => {
     status,
   } = bookingInfo;
   const booking_id = uuid.v1().toString();
+  const date_added = Date.now().toString();
 
   var params = {
     TableName: process.env.BOOKINGS_DYNAMODB,
@@ -26,8 +27,8 @@ module.exports.createBooking = (event, context, callback) => {
       lastname: { S: lastname },
       phone_number: { S: phone_number },
       dining_date: { S: dining_date },
-      date_added: { S: Date.now().toString() },
-      number_of_covers: { N: number_of_covers },
+      date_added: { S: date_added },
+      number_of_covers: { S: number_of_covers },
       status: { S: status },
     },
   };
