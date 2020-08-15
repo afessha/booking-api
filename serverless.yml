@@ -1,4 +1,4 @@
-service: booking-api
+service: bookingCreate
 provider:
   name: aws
   runtime: nodejs12.x
@@ -22,13 +22,13 @@ provider:
           - bookingDynamoDB
           - Arn
 custom:
-  bookingDynamoDB: booking-${opt:stage,'dev'}-list-awet
+  bookingDynamoDB: booking-${opt:stage,'dev'}-table-awet
 
 # you can overwrite defaults here
 #  stage: dev
 
 functions:
-  booking-create-awet:
+  bookingCreate-awet:
     handler: handler.createBooking
     events:
       - http:
