@@ -44,6 +44,8 @@ module.exports.createBooking = (event, context, callback) => {
         body: "fail",
         headers: {
           "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Credentials": true,
         },
       };
 
