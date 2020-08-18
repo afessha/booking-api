@@ -13,10 +13,10 @@ module.exports.createBooking = (event, context, callback) => {
     phone_number,
     dining_date,
     number_of_covers,
-    status,
   } = bookingInfo;
   const booking_id = uuid.v1().toString();
   const date_added = Date.now().toString();
+  const status = "Not arrived";
 
   var params = {
     TableName: process.env.BOOKINGS_DYNAMODB,
